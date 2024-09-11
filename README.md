@@ -1,1 +1,2 @@
 # The-Speech-Emotion-Recognition-SER-
+a technology that focuses on analyzing and interpreting human emotions from spoken language. It combines elements of audio signal processing, machine learning, and natural language processing to extract features from speech and classify the emotional state of the speaker. The emotions typically recognized include happiness, sadness, anger, surprise, fear, and neutral emotions, though the set of emotions can vary based on the application.
