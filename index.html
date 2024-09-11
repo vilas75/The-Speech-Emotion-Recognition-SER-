@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(243, 104, 57, 0.869);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+h1 {
+    color: #040000;
+}
+
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #080101;
+    border-radius: 20px;
+    width: 300px;
+    background-color: aliceblue;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #47b44b;
+    color: rgb(248, 243, 243);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2a852f;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Recognition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>"Emotion Recognition from Speech/Audio"</h1>
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".wav, .mp3">
+        <button type="submit">Predict Emotion</button>
+    </form>
+
+    <!-- Display the prediction result here -->
+    <div id="result"></div>
+
+    <!-- Include any JS files if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('form').on('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                type: 'POST',
+                url: '/predict',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $('#result').text('The Predicted Emotion is: ' + response.emotion);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
